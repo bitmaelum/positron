@@ -1,0 +1,38 @@
+.bm_read {
+  font-weight: 100;
+}
+
+.bm_unread {
+    font-weight: 700;
+}
+
+/*.split, .gutter.gutter-horizontal {*/
+/*    float: left;*/
+/*}*/
+.split, .gutter {
+    background-color: lightgray;
+}
+
+.bm-pane {
+    /*background-color: green;*/
+    /*width: 100%;*/
+    flex: 1 1;
+}
+
+.logo {
+    /*text-align: center;*/
+    height: 100%;
+    /*background-color: lightblue;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 3px solid green;*/
+}
+
+.logo img {
+    /*height: 200px;*/
+}
+
+.bm-message-details {
+    background-color: #f0f0f0
+}

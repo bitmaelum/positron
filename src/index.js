@@ -1,17 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import * as serviceWorker from './serviceWorker'
+import MainWindow from './Components/MainWindow'
+import './index.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '@mdi/font/css/materialdesignicons.min.css'
+import './bitmaelum.css'
+
+// import Photon from './electron-photon-react'
+import 'electron-photon/dist/PhotonBtnGroup/styles/cocoa.css'
+import 'electron-photon/dist/PhotonButton/styles/cocoa.css'
+import 'electron-photon/dist/PhotonCircularSlider/styles/cocoa.css'
+import 'electron-photon/dist/PhotonContent/styles/cocoa.css'
+import 'electron-photon/dist/PhotonCustom/styles/cocoa.css'
+import 'electron-photon/dist/PhotonDialog/styles/cocoa.css'
+import 'electron-photon/dist/PhotonInput/styles/cocoa.css'
+import 'electron-photon/dist/PhotonMenu/styles/cocoa.css'
+import 'electron-photon/dist/PhotonMessages/styles/cocoa.css'
+import 'electron-photon/dist/PhotonNavigation/styles/cocoa.css'
+import 'electron-photon/dist/PhotonNumberInput/styles/cocoa.css'
+import 'electron-photon/dist/PhotonOriginal/styles/cocoa.css'
+import 'electron-photon/dist/PhotonPanes/styles/cocoa.css'
+import 'electron-photon/dist/PhotonProgress/styles/cocoa.css'
+import 'electron-photon/dist/PhotonProgressCircle/styles/cocoa.css'
+import 'electron-photon/dist/PhotonSlider/styles/cocoa.css'
+import 'electron-photon/dist/PhotonSwipe/styles/cocoa.css'
+import 'electron-photon/dist/PhotonTab/styles/cocoa.css'
+import 'electron-photon/dist/PhotonToolbar/styles/cocoa.css'
+import 'electron-photon/dist/PhotonWindow/styles/cocoa.css'
+import 'electron-photon/dist/PhotonWindowContent/styles/cocoa.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MainWindow />
   </React.StrictMode>,
-  document.getElementById('root')
-);
+  document.getElementById('root'),
+)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister()
