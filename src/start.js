@@ -1,10 +1,11 @@
 const {
-  ipcMain, app, dialog, BrowserWindow,
+  ipcMain, app, dialog, BrowserWindow, Menu,
 } = require('electron')
 
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
+const menuTemplate = require('./menu')
 
 let mainWindow
 
@@ -14,7 +15,7 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false,
     },
   })
 
@@ -34,6 +35,8 @@ function createWindow() {
   })
 }
 
+const menu = Menu.buildFromTemplate(menuTemplate)
+Menu.setApplicationMenu(menu)
 app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
@@ -48,25 +51,31 @@ app.on('activate', () => {
   }
 })
 
-ipcMain.on('openVault', (event, path) => {
-  function readFile(filepath) {
-    fs.readFile(filepath, 'utf-8', (err, data) => {
-      if (err) {
-        alert(`An error ocurred reading the file :${err.message}`)
-        return
-      }
-
-      // handle the file content
-      event.sender.send('fileData', data)
-    })
-  }
-
-  dialog.showOpenDialog((fileNames) => {
-    // fileNames is an array that contains all the selected
-    if (fileNames === undefined) {
-      console.log('No file selected')
-    } else {
-      readFile(fileNames[0])
-    }
-  })
-})
+// ipcMain.on('openVault', (event, path) => {
+//   function readFile(filepath) {
+//     fs.readFile(filepath, 'utf-8', (err, data) => {
+//       if (err) {
+//         alert(`An error ocurred reading the file :${err.message}`)
+//         return
+//       }
+//
+//       // handle the file content
+//       event.sender.send('openVaultResponse', data)
+//     })
+//   }
+//
+//   const options = {
+//     filters: [
+//       { name: 'json', extensions: ['json'] },
+//     ],
+//   }
+//
+//   dialog.showOpenDialog(options, (fileNames) => {
+//     // fileNames is an array that contains all the selected
+//     if (fileNames === undefined) {
+//       console.log('No file selected')
+//     } else {
+//       readFile(fileNames[0])
+//     }
+//   })
+// })

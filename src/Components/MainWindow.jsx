@@ -13,44 +13,27 @@ const buttons = [
 ]
 
 const openVault = () => {
-  console.log(window.ipcRenderer)
-  window.ipcRenderer.send('openVault', () => {
-    console.log('Event sent.')
+  const { ipcRenderer } = window.require('electron')
+  ipcRenderer.send('openVault')
+
+  ipcRenderer.on('openVaultResponse', (data) => {
+    // eslint-disable-next-line no-console
+    console.log(data)
   })
-
-  window.ipcRenderer.on('fileData', (event, data) => {
-    document.write(data)
-  })
-
-  // window.electron.dialog.showErrorBox('Error Box', 'Fatal Error')
-  /*    window.electron.dialog.showOpenDialog((fileNames) => {
-            // fileNames is an array that contains all the selected
-            if(fileNames === undefined){
-                console.log("No file selected");
-                return;
-            }
-
-            fs.readFile(fileNames[0], 'utf-8', (err, data) => {
-                if(err){
-                    alert("An error ocurred reading the file :" + err.message);
-                    return;
-                }
-
-                // Change how to handle the file content
-                console.log("The file content is : " + data);
-            });
-        });
-        */
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Toolbar extends React.Component {
+  componentDidMount() {
+    openVault()
+  }
+
   render() {
     return (
       <tool-bar type="header">
         <div className="toolbar-actions">
           <div className="btn-group">
-            {buttons.map(({ ico, text }, index) => (
+            {buttons.map(({ ico }, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <button type="submit" key={index} className="btn btn-default">
                 <span className={ico} />
@@ -212,8 +195,6 @@ function MessageList() {
 }
 
 function WindowContent() {
-  const vault = openVault()
-
   return (
     <window-content>
       <div className="pane-group">
