@@ -1,5 +1,6 @@
 const { shell } = require('electron')
 const { loadVault } = require('./vault')
+const { askPassword } = require('./utils.js')
 
 const MenuTemplate = [
   {
@@ -9,7 +10,13 @@ const MenuTemplate = [
         label: 'Open Vault',
         accelerator: 'CmdOrCtrl+Option+o',
         click: async () => {
-          await loadVault()
+          const vaultJson = await loadVault()
+          const passwd = await askPassword()
+
+          // const vault = unlockVault(vaultJson, passwd)
+          // if (vault === null) {
+          //   // Vault is not opened, wrong passwd?
+          // }
         },
       },
       {

@@ -1,13 +1,19 @@
 const {
-  ipcMain, app, dialog, BrowserWindow, Menu,
+  app, BrowserWindow, Menu,
 } = require('electron')
 
 const path = require('path')
 const url = require('url')
-const fs = require('fs')
+const modal = require('electron-modal')
 const menuTemplate = require('./menu')
 
 let mainWindow
+
+function getMainWindow() {
+  return mainWindow
+}
+
+module.exports = { getMainWindow }
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -33,11 +39,18 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  app.MainWindow = mainWindow
 }
+
+app.commandLine.appendSwitch('remote-debugging-port', '9222')
 
 const menu = Menu.buildFromTemplate(menuTemplate)
 Menu.setApplicationMenu(menu)
-app.on('ready', createWindow)
+app.on('ready', () => {
+  modal.setup()
+  createWindow()
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
