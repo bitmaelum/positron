@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import * as serviceWorker from './renderer/serviceWorker'
+import * as serviceWorker from './serviceWorker'
 import MainWindow from './renderer/Components/Password'
 import './renderer/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@mdi/font/css/materialdesignicons.min.css'
 
-import * as serviceWorker from './serviceWorker'
+import * as serviceWorker from '../serviceWorker'
 import MainWindow from './Components/MainWindow'
 
 import './bitmaelum.css'

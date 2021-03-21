@@ -12,6 +12,8 @@ const menuTemplate = require('./menu/menu')
 // Dialog IPC event handlers
 require('./events/dialogs')
 
+console.log('main/main.js called')
+
 let mainWindow
 
 function createWindow() {
@@ -63,9 +65,3 @@ app.on('activate', () => {
     createWindow()
   }
 })
-
-function getMainWindow() {
-  return mainWindow
-}
-
-module.exports = { getMainWindow }
