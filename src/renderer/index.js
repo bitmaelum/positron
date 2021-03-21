@@ -1,11 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import * as serviceWorker from './renderer/serviceWorker'
-import MainWindow from './renderer/Components/Password'
-import './renderer/index.css'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@mdi/font/css/materialdesignicons.min.css'
-import './renderer/bitmaelum.css'
+
+import * as serviceWorker from './serviceWorker'
+import MainWindow from './Components/MainWindow'
+
+import './bitmaelum.css'
+import './index.css'
 
 // import Photon from './electron-photon-react'
 import 'electron-photon/dist/PhotonBtnGroup/styles/cocoa.css'
@@ -30,9 +33,17 @@ import 'electron-photon/dist/PhotonToolbar/styles/cocoa.css'
 import 'electron-photon/dist/PhotonWindow/styles/cocoa.css'
 import 'electron-photon/dist/PhotonWindowContent/styles/cocoa.css'
 
+// eslint-disable-next-line no-console
+console.log('renderer/index.js called')
+
 ReactDOM.render(
   <React.StrictMode>
-    <Password />
+    <MainWindow />
   </React.StrictMode>,
   document.getElementById('root'),
 )
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister()

@@ -1,6 +1,4 @@
-const { shell } = require('electron')
-const { loadVault } = require('./vault')
-const { askPassword } = require('./utils.js')
+const { shell, ipcMain } = require('electron')
 
 const MenuTemplate = [
   {
@@ -10,18 +8,15 @@ const MenuTemplate = [
         label: 'Open Vault',
         accelerator: 'CmdOrCtrl+Option+o',
         click: async () => {
-          const vaultJson = await loadVault()
-          const passwd = await askPassword()
-
-          // const vault = unlockVault(vaultJson, passwd)
-          // if (vault === null) {
-          //   // Vault is not opened, wrong passwd?
-          // }
+          ipcMain.emit('menu:open-vault')
         },
       },
       {
         label: 'Close Vault',
         accelerator: 'CmdOrCtrl+Option+c',
+        click: async () => {
+          ipcMain.emit('menu:close-vault')
+        },
       },
       {
         type: 'separator',

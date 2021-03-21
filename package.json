@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "src/start.js",
+  "main": "src/main/main.js",
   "dependencies": {
     "@mdi/font": "^5.9.55",
     "@mdi/react": "^1.4.0",
