@@ -4,7 +4,6 @@ const {
 
 const path = require('path')
 const url = require('url')
-const modal = require('electron-modal')
 
 // Menu
 const menuTemplate = require('./menu/menu')
@@ -44,13 +43,12 @@ function createWindow() {
   app.MainWindow = mainWindow
 }
 
-app.commandLine.appendSwitch('remote-debugging-port', '9222')
+// app.commandLine.appendSwitch('remote-debugging-port', '9222')
 
 const menu = Menu.buildFromTemplate(menuTemplate)
 Menu.setApplicationMenu(menu)
 
 app.on('ready', () => {
-  modal.setup()
   createWindow()
 })
 
